@@ -12,6 +12,7 @@ const EditTodoForm = ({ editTodo, id, task, toggleEditForm }) => {
         reset();
         toggleEditForm();
       }}
+      style={{ marginLeft: '1rem', width: '50%' }}
     >
       <TextField
         id={id}
@@ -19,6 +20,7 @@ const EditTodoForm = ({ editTodo, id, task, toggleEditForm }) => {
         value={value}
         onChange={handleChange}
         fullWidth
+        autoFocus
       />
     </form>
   );
