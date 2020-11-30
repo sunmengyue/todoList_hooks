@@ -7,11 +7,12 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
+import { TodosProvider } from './context/todo.context';
 
 function TodoApp() {
   const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]');
   const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(
-    initialTodos
+    initialTodos,
   );
   //[
   //   { id: 1, task: 'walk dog', completed: false },
@@ -35,13 +36,15 @@ function TodoApp() {
       </AppBar>
       <Grid container justify='center' style={{ marginTop: '1rem' }}>
         <Grid item xs={11} md={8} lg={4}>
-          <TodoForm addTodo={addTodo} />
-          <TodoList
-            todos={todos}
-            deleteItem={removeTodo}
-            toggleTodo={toggleTodo}
-            editTodo={editTodo}
-          />
+          <TodosProvider>
+            <TodoForm addTodo={addTodo} />
+            <TodoList
+              todos={todos}
+              deleteItem={removeTodo}
+              toggleTodo={toggleTodo}
+              editTodo={editTodo}
+            />
+          </TodosProvider>
         </Grid>
       </Grid>
     </Paper>
